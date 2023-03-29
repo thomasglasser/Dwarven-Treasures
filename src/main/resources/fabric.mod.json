@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "dwarven-treasures",
+	"version": "${version}",
+	"name": "Dwarven Treasures",
+	"description": "A small Tolkien-inspired mod that brings to minecraft some of the greatest treasures ever forged by the world's greatest metalworkers: Dwarves.",
+	"authors": [
+		"Ecorous",
+		"Thomas Glasser",
+		"Tir-far-thoinn"
+	],
+	"contact": {
+		"homepage": "https://github.com/thomasglasser/dwarven-treasures/wiki",
+		"sources": "https://github.com/thomasglasser/dwarven-treasures"
+	},
+	"license": "MIT",
+	"icon": "assets/dwarven-treasures/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.ecorous.dwarventreasures.DwarvenTreasures"
+		],
+		"fabric-datagen": [
+			"org.ecorous.dwarventreasures.data.DwarvenTreasuresDataGenerators"
+		]
+	},
+	"mixins": [
+		"dwarven-treasures.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.18",
+		"minecraft": "~1.19.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+}

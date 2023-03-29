@@ -1,0 +1,10 @@
+{
+	"required": true,
+	"package": "org.ecorous.dwarventreasures.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
