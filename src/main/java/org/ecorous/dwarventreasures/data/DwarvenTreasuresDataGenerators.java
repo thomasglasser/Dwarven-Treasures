@@ -1,4 +1,4 @@
-package org.ecorous.dwarventreasures;
+package org.ecorous.dwarventreasures.data;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
