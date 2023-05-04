@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 public class DwarvenTreasures implements ModInitializer {
 	public static final String MOD_NAME = "Dwarven Treasures";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-	public static final String MOD_ID = "dwarven-treasures";
+	public static final String MOD_ID = "dwarventreasures";
 
 	@Override
 	public void onInitialize() {

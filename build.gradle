@@ -25,6 +25,8 @@ loom {
             runDir "build/datagen"
         }
     }
+
+	accessWidenerPath = file("src/main/resources/dwarventreasures.accesswidener")
 }
 
 // Add the generated resources to the main source set
@@ -66,9 +68,9 @@ dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 
 	mappings loom.layered() {
-		officialMojangMappings()
-//		parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
 		parchment("org.parchmentmc.data:parchment-${previous_minecraft_version}:${parchment_version}@zip") // Waiting on 1.19.4
+		//		parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+		officialMojangMappings()
 	}
 
 	modRuntimeOnly "dev.lambdaurora:spruceui:${spruceui_version}+${minecraft_version}"

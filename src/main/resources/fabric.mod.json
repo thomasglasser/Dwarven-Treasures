@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "dwarven-treasures",
+	"id": "dwarventreasures",
 	"version": "${version}",
 	"name": "Dwarven Treasures",
 	"description": "A small Tolkien-inspired mod that brings to minecraft some of the greatest treasures ever forged by the world's greatest metalworkers: Dwarves.",
@@ -16,6 +16,7 @@
 	"license": "MIT",
 	"icon": "assets/dwarven-treasures/icon.png",
 	"environment": "*",
+	"accessWidener": "dwarventreasures.accesswidener",
 	"entrypoints": {
 		"main": [
 			"org.ecorous.dwarventreasures.DwarvenTreasures"
