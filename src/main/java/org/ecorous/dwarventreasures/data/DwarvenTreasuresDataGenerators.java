@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.ecorous.dwarventreasures.data.lang.DwarvenTreasuresEnUsLanguageProvider;
 import org.ecorous.dwarventreasures.data.models.DwarvenTreasuresModelProvider;
+import org.ecorous.dwarventreasures.data.recipes.DwarvenTreasuresRecipeProvider;
 
 public class DwarvenTreasuresDataGenerators implements DataGeneratorEntrypoint {
 	@Override
@@ -12,5 +13,6 @@ public class DwarvenTreasuresDataGenerators implements DataGeneratorEntrypoint {
 
 		pack.addProvider(DwarvenTreasuresModelProvider::new);
 		pack.addProvider(DwarvenTreasuresEnUsLanguageProvider::new);
+		pack.addProvider(DwarvenTreasuresRecipeProvider::new);
 	}
 }
