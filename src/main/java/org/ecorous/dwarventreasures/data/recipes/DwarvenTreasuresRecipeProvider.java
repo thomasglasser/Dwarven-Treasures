@@ -24,11 +24,11 @@ public class DwarvenTreasuresRecipeProvider extends FabricRecipeProvider {
         DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_LEGGINGS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.LEGGINGS));
         DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_HELMET, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.HELMET));
         DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_BOOTS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.BOOTS));
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SWORD, RecipeCategory.COMBAT, Items.NETHERITE_SWORD);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_AXE, RecipeCategory.TOOLS, Items.NETHERITE_AXE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, Items.NETHERITE_PICKAXE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_HOE, RecipeCategory.TOOLS, Items.NETHERITE_HOE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, Items.NETHERITE_SHOVEL);
+        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SWORD, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_SWORD);
+        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_AXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_AXE);
+        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_PICKAXE);
+        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_HOE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_HOE);
+        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_SHOVEL);
     }
 
     public static void mithrilSmithing(Consumer<FinishedRecipe> finishedRecipeConsumer, Item ingredientItem, RecipeCategory category, Item resultItem) {

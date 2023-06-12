@@ -13,7 +13,7 @@ import static net.minecraft.world.item.SmithingTemplateItem.*;
 
 public class DwarvenTreasuresItems
 {
-    private static final Map<CreativeModeTab, Item> ITEMS_FOR_TABS = new HashMap<>();
+    private static final Map<CreativeModeTab, List<Item>> ITEMS_FOR_TABS = new HashMap<>();
     private static final Item.Properties RING_PROPERTIES = new Item.Properties().fireResistant().stacksTo(1);
 
     public static final Component MITHRIL_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
@@ -33,12 +33,18 @@ public class DwarvenTreasuresItems
     public static final Item MITHRIL_UPGRADE_SMITHING_TEMPLATE = registerUpgradeSmithingTemplate("mithril");
     public static final Map<ArmorItem.Type, Item> MITHRIL_ARMOR = registerArmor("mithril", DwarvenTreasuresArmorMaterials.MITHRIL);
 
-//    TODO: Make tools for mithril and update recipe provider
-//    public static final Item MITHRIL_SWORD
+    public static final Item MITHRIL_SWORD = registerSword("mithril_sword", DwarvenTreasuresTiers.MITHRIL);
+    public static final Item MITHRIL_AXE = registerAxe("mithril_axe", DwarvenTreasuresTiers.MITHRIL);
+    public static final Item MITHRIL_PICKAXE = registerPickaxe("mithril_pickaxe", DwarvenTreasuresTiers.MITHRIL);
+    public static final Item MITHRIL_SHOVEL = registerShovel("mithril_shovel", DwarvenTreasuresTiers.MITHRIL);
+    public static final Item MITHRIL_HOE = registerHoe("mithril_hoe", DwarvenTreasuresTiers.MITHRIL);
 
     private static Item register(String name, Item item, CreativeModeTab... tabs)
     {
-        Arrays.stream(tabs).forEach(creativeModeTab -> ITEMS_FOR_TABS.put(creativeModeTab, item));
+        for (CreativeModeTab tab: tabs) {
+            List<Item> list = ITEMS_FOR_TABS.computeIfAbsent(tab, empty -> new ArrayList<>());
+            list.add(item);
+        }
         return Registry.register(BuiltInRegistries.ITEM, DwarvenTreasures.modLoc(name), item);
     }
 
@@ -66,25 +72,35 @@ public class DwarvenTreasuresItems
         return register(name, new SwordItem(tier, 3, -2.4f, new Item.Properties()), CreativeModeTabs.COMBAT);
     }
 
-    // TODO: Fix values for tools below
     private static Item registerAxe(String name, Tier tier)
     {
-        return register(name, new SwordItem(tier, 3, -2.4f, new Item.Properties()), CreativeModeTabs.COMBAT);
+        return register(name, new AxeItem(tier, 6.0f, -3.1f, new Item.Properties()), CreativeModeTabs.COMBAT);
     }
 
     private static Item registerPickaxe(String name, Tier tier)
     {
-        return register(name, new SwordItem(tier, 3, -2.4f, new Item.Properties()), CreativeModeTabs.COMBAT);
+        return register(name, new PickaxeItem(tier, 1, -2.8f, new Item.Properties()), CreativeModeTabs.COMBAT);
     }
 
     private static Item registerHoe(String name, Tier tier)
     {
-        return register(name, new SwordItem(tier, 3, -2.4f, new Item.Properties()), CreativeModeTabs.COMBAT);
+        return register(name, new HoeItem(tier, -2, -1.0f, new Item.Properties()), CreativeModeTabs.COMBAT);
     }
 
     private static Item registerShovel(String name, Tier tier)
     {
-        return register(name, new SwordItem(tier, 3, -2.4f, new Item.Properties()), CreativeModeTabs.COMBAT);
+        return register(name, new ShovelItem(tier, 1.5f, -3.0f, new Item.Properties()), CreativeModeTabs.COMBAT);
+    }
+
+    public static Map<CreativeModeTab, List<Item>> getItemsForTabs() {
+        return ITEMS_FOR_TABS;
+    }
+    
+    public static List<ItemStack> getItemsForTab(CreativeModeTab tab)
+    {
+        List<ItemStack> items = new ArrayList<>();
+        ITEMS_FOR_TABS.get(tab).forEach(item -> items.add(item.getDefaultInstance()));
+        return items;
     }
 
     public static void init() {}
