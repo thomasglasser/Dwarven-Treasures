@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "dwarven-treasures:item/netherite_ring"
+    "layer0": "dwarventreasures:item/ancient_debris_ring"
   }
 }

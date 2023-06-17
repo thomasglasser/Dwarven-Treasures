@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "dwarven-treasures:item/gold_ring"
+    "layer0": "dwarventreasures:item/mithril_boots"
   }
 }

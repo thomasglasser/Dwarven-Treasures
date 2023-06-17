@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "dwarventreasures:mithril_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_axe"
+  },
+  "result": {
+    "item": "dwarventreasures:mithril_axe"
+  },
+  "template": {
+    "item": "dwarventreasures:mithril_upgrade_smithing_template"
+  }
+}

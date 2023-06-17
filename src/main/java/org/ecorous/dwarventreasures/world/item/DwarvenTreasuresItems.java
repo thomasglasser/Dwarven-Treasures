@@ -7,7 +7,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import org.ecorous.dwarventreasures.DwarvenTreasures;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static net.minecraft.world.item.SmithingTemplateItem.*;
 
@@ -17,10 +20,8 @@ public class DwarvenTreasuresItems
     private static final Item.Properties RING_PROPERTIES = new Item.Properties().fireResistant().stacksTo(1);
 
     public static final Component MITHRIL_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
-    private static final Component MITHRIL_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", DwarvenTreasures.modLoc("mithril_upgrade"))).withStyle(TITLE_FORMAT);
-    public static final Component MITHRIL_UPGRADE_APPLIES_TO = NETHERITE_UPGRADE_APPLIES_TO;
-    private static final Component MITHRIL_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.base_slot_description")));
-    private static final Component MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.additions_slot_description")));
+    public static final Component MITHRIL_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", DwarvenTreasures.modLoc("mithril_upgrade"))).withStyle(TITLE_FORMAT);
+    public static final Component MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.additions_slot_description")));
 
 
     public static final Item NETHERITE_RING = register("netherite_ring", new Item(RING_PROPERTIES));
@@ -55,7 +56,7 @@ public class DwarvenTreasuresItems
 
     private static Item registerUpgradeSmithingTemplate(String name)
     {
-        return register(name + "_upgrade_smithing_template", new SmithingTemplateItem(MITHRIL_UPGRADE_APPLIES_TO, MITHRIL_UPGRADE_INGREDIENTS, MITHRIL_UPGRADE, MITHRIL_UPGRADE_BASE_SLOT_DESCRIPTION, MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createNetheriteUpgradeIconList(), createNetheriteUpgradeMaterialList()), CreativeModeTabs.INGREDIENTS);
+        return register(name + "_upgrade_smithing_template", new SmithingTemplateItem(NETHERITE_UPGRADE_APPLIES_TO, MITHRIL_UPGRADE_INGREDIENTS, MITHRIL_UPGRADE, NETHERITE_UPGRADE_BASE_SLOT_DESCRIPTION, MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createNetheriteUpgradeIconList(), createNetheriteUpgradeMaterialList()), CreativeModeTabs.INGREDIENTS);
     }
 
     private static Map<ArmorItem.Type, Item> registerArmor(String name, ArmorMaterial material)
@@ -99,7 +100,14 @@ public class DwarvenTreasuresItems
     public static List<ItemStack> getItemsForTab(CreativeModeTab tab)
     {
         List<ItemStack> items = new ArrayList<>();
-        ITEMS_FOR_TABS.get(tab).forEach(item -> items.add(item.getDefaultInstance()));
+
+        getItemsForTabs().forEach((itemTab, itemLikes) -> {
+            if (tab == itemTab)
+            {
+                itemLikes.forEach((itemLike) -> items.add(itemLike.getDefaultInstance()));
+            }
+        });
+
         return items;
     }
 

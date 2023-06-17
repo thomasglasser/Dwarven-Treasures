@@ -1,0 +1,20 @@
+{
+  "block.dwarventreasures.mithril_block": "Block of Mithril",
+  "item.dwarventreasures.ancient_debris_ring": "Ancient Debris Ring",
+  "item.dwarventreasures.copper_ring": "Copper Ring",
+  "item.dwarventreasures.gold_ring": "Gold Ring",
+  "item.dwarventreasures.mithril_axe": "Mithril Axe",
+  "item.dwarventreasures.mithril_boots": "Mithril Boots",
+  "item.dwarventreasures.mithril_chestplate": "Mithril Chestplate",
+  "item.dwarventreasures.mithril_helmet": "Mithril Helmet",
+  "item.dwarventreasures.mithril_hoe": "Mithril Hoe",
+  "item.dwarventreasures.mithril_ingot": "Mithril Ingot",
+  "item.dwarventreasures.mithril_leggings": "Mithril Leggings",
+  "item.dwarventreasures.mithril_pickaxe": "Mithril Pickaxe",
+  "item.dwarventreasures.mithril_shovel": "Mithril Shovel",
+  "item.dwarventreasures.mithril_sword": "Mithril Sword",
+  "item.dwarventreasures.netherite_ring": "Netherite Ring",
+  "item.dwarventreasures.smithing_template.mithril_upgrade.additions_slot_description": "Put a Mithril Ingot here",
+  "item.dwarventreasures.smithing_template.mithril_upgrade.ingredients": "Mithril Ingot",
+  "upgrade.dwarventreasures.mithril_upgrade": "Mithril Upgrade"
+}

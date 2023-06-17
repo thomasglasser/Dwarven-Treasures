@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "dwarventreasures:mithril_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_helmet"
+  },
+  "result": {
+    "item": "dwarventreasures:mithril_helmet"
+  },
+  "template": {
+    "item": "dwarventreasures:mithril_upgrade_smithing_template"
+  }
+}
