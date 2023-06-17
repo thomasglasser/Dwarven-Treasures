@@ -4,6 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import org.ecorous.dwarventreasures.DwarvenTreasures;
 
@@ -16,7 +17,7 @@ import static net.minecraft.world.item.SmithingTemplateItem.*;
 
 public class DwarvenTreasuresItems
 {
-    private static final Map<CreativeModeTab, List<Item>> ITEMS_FOR_TABS = new HashMap<>();
+    private static final Map<ResourceKey<CreativeModeTab>, List<Item>> ITEMS_FOR_TABS = new HashMap<>();
     private static final Item.Properties RING_PROPERTIES = new Item.Properties().fireResistant().stacksTo(1);
 
     public static final Component MITHRIL_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
@@ -24,13 +25,13 @@ public class DwarvenTreasuresItems
     public static final Component MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.additions_slot_description")));
 
 
-    public static final Item NETHERITE_RING = register("netherite_ring", new Item(RING_PROPERTIES));
-    public static final Item GOLD_RING = register("gold_ring", new Item(RING_PROPERTIES));
-    public static final Item ANCIENT_DEBRIS_RING = register("ancient_debris_ring", new Item(RING_PROPERTIES));
-    public static final Item COPPER_RING = register("copper_ring", new Item(RING_PROPERTIES));
+    public static final Item NETHERITE_RING = registerRing("netherite_ring");
+    public static final Item GOLD_RING = registerRing("gold_ring");
+    public static final Item ANCIENT_DEBRIS_RING = registerRing("ancient_debris_ring");
+    public static final Item COPPER_RING = registerRing("copper_ring");
 
     // Mithril
-    public static final Item MITHRIL_INGOT = register("mithril_ingot");
+    public static final Item MITHRIL_INGOT = register("mithril_ingot", CreativeModeTabs.INGREDIENTS);
     public static final Item MITHRIL_UPGRADE_SMITHING_TEMPLATE = registerUpgradeSmithingTemplate("mithril");
     public static final Map<ArmorItem.Type, Item> MITHRIL_ARMOR = registerArmor("mithril", DwarvenTreasuresArmorMaterials.MITHRIL);
 
@@ -40,16 +41,18 @@ public class DwarvenTreasuresItems
     public static final Item MITHRIL_SHOVEL = registerShovel("mithril_shovel", DwarvenTreasuresTiers.MITHRIL);
     public static final Item MITHRIL_HOE = registerHoe("mithril_hoe", DwarvenTreasuresTiers.MITHRIL);
 
-    private static Item register(String name, Item item, CreativeModeTab... tabs)
+    @SafeVarargs
+    private static Item register(String name, Item item, ResourceKey<CreativeModeTab>... tabs)
     {
-        for (CreativeModeTab tab: tabs) {
+        for (ResourceKey<CreativeModeTab> tab: tabs) {
             List<Item> list = ITEMS_FOR_TABS.computeIfAbsent(tab, empty -> new ArrayList<>());
             list.add(item);
         }
         return Registry.register(BuiltInRegistries.ITEM, DwarvenTreasures.modLoc(name), item);
     }
 
-    private static Item register(String name, CreativeModeTab... tabs)
+    @SafeVarargs
+    private static Item register(String name, ResourceKey<CreativeModeTab>... tabs)
     {
         return register(name, new Item(new Item.Properties()), tabs);
     }
@@ -93,11 +96,16 @@ public class DwarvenTreasuresItems
         return register(name, new ShovelItem(tier, 1.5f, -3.0f, new Item.Properties()), CreativeModeTabs.COMBAT);
     }
 
-    public static Map<CreativeModeTab, List<Item>> getItemsForTabs() {
+    private static Item registerRing(String name)
+    {
+        return register(name, new Item(RING_PROPERTIES), CreativeModeTabs.INGREDIENTS, CreativeModeTabs.COMBAT);
+    }
+
+    public static Map<ResourceKey<CreativeModeTab>, List<Item>> getItemsForTabs() {
         return ITEMS_FOR_TABS;
     }
     
-    public static List<ItemStack> getItemsForTab(CreativeModeTab tab)
+    public static List<ItemStack> getItemsForTab(ResourceKey<CreativeModeTab> tab)
     {
         List<ItemStack> items = new ArrayList<>();
 

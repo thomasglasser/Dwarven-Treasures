@@ -7,12 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.Blocks;
 import org.ecorous.dwarventreasures.DwarvenTreasures;
 
 public class DwarvenTreasuresBlocks
 {
-    public static final Block MITHRIL_BLOCK = register("mithril_block", FabricBlockSettings.of(Material.METAL));
+    public static final Block MITHRIL_BLOCK = register("mithril_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 
     private static Block register(String name, FabricBlockSettings settings)
     {
