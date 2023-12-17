@@ -25,6 +25,7 @@ public class DwarvenTreasuresModelProvider extends FabricModelProvider {
         flat(itemModelGenerator, DwarvenTreasuresItems.ANCIENT_DEBRIS_RING);
         flat(itemModelGenerator, DwarvenTreasuresItems.NETHERITE_RING);
         flat(itemModelGenerator, DwarvenTreasuresItems.GOLD_RING);
+        flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_RING);
         flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_INGOT);
         flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_UPGRADE_SMITHING_TEMPLATE);
         DwarvenTreasuresItems.MITHRIL_ARMOR.forEach((type, item) ->

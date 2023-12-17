@@ -29,6 +29,7 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
         translationBuilder.add(DwarvenTreasuresItems.ANCIENT_DEBRIS_RING, "Ancient Debris Ring");
         translationBuilder.add(DwarvenTreasuresItems.NETHERITE_RING, "Netherite Ring");
         translationBuilder.add(DwarvenTreasuresItems.GOLD_RING, "Gold Ring");
+        translationBuilder.add(DwarvenTreasuresItems.MITHRIL_RING, "Mithril Ring");
         translationBuilder.add(DwarvenTreasuresItems.MITHRIL_INGOT, "Mithril Ingot");
         DwarvenTreasuresItems.MITHRIL_ARMOR.forEach((type, item) ->
                 translationBuilder.add(item, "Mithril " + ARMOR_TYPE_SUFFIXES.get(type))

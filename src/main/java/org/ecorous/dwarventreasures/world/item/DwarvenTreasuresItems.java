@@ -24,22 +24,22 @@ public class DwarvenTreasuresItems
     public static final Component MITHRIL_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", DwarvenTreasures.modLoc("mithril_upgrade"))).withStyle(TITLE_FORMAT);
     public static final Component MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", DwarvenTreasures.modLoc("smithing_template.mithril_upgrade.additions_slot_description")));
 
-
-    public static final Item NETHERITE_RING = registerRing("netherite_ring");
-    public static final Item GOLD_RING = registerRing("gold_ring");
-    public static final Item ANCIENT_DEBRIS_RING = registerRing("ancient_debris_ring");
-    public static final Item COPPER_RING = registerRing("copper_ring");
-
     // Mithril
     public static final Item MITHRIL_INGOT = register("mithril_ingot", CreativeModeTabs.INGREDIENTS);
     public static final Item MITHRIL_UPGRADE_SMITHING_TEMPLATE = registerUpgradeSmithingTemplate("mithril");
     public static final Map<ArmorItem.Type, Item> MITHRIL_ARMOR = registerArmor("mithril", DwarvenTreasuresArmorMaterials.MITHRIL);
-
     public static final Item MITHRIL_SWORD = registerSword("mithril_sword", DwarvenTreasuresTiers.MITHRIL);
     public static final Item MITHRIL_AXE = registerAxe("mithril_axe", DwarvenTreasuresTiers.MITHRIL);
     public static final Item MITHRIL_PICKAXE = registerPickaxe("mithril_pickaxe", DwarvenTreasuresTiers.MITHRIL);
     public static final Item MITHRIL_SHOVEL = registerShovel("mithril_shovel", DwarvenTreasuresTiers.MITHRIL);
     public static final Item MITHRIL_HOE = registerHoe("mithril_hoe", DwarvenTreasuresTiers.MITHRIL);
+
+    // Rings
+    public static final Item GOLD_RING = registerRing("gold_ring");
+    public static final Item COPPER_RING = registerRing("copper_ring");
+    public static final Item NETHERITE_RING = registerRing("netherite_ring");
+    public static final Item ANCIENT_DEBRIS_RING = registerRing("ancient_debris_ring");
+    public static final Item MITHRIL_RING = registerRing("mithril_ring");
 
     @SafeVarargs
     private static Item register(String name, Item item, ResourceKey<CreativeModeTab>... tabs)

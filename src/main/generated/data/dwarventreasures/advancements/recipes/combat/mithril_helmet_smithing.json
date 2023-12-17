@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_mithril_ingot",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_mithril_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:mithril_helmet_smithing"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
