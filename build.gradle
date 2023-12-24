@@ -25,7 +25,7 @@ loom {
 		}
     }
 
-	accessWidenerPath = file("src/main/resources/dwarventreasures.accesswidener")
+	accessWidenerPath = file("src/main/resources/${mod_id}.accesswidener")
 }
 
 // Add the generated resources to the main source set
@@ -41,25 +41,56 @@ sourceSets {
 
 repositories {
 	maven {
-		name = 'ParchmentMC'
+		name = 'Parchment'
 		url = 'https://maven.parchmentmc.org'
+		content {
+			includeGroupAndSubgroups "org.parchmentmc"
+		}
 	}
 	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroupAndSubgroups "maven.modrinth"
+		}
 	}
 	maven {
-		url "https://cursemaven.com"
-	}
-	maven {
+		name = "Architectury"
 		url "https://maven.architectury.dev/"
+		content {
+			includeGroupAndSubgroups "me.shedaniel"
+			includeGroupAndSubgroups "dev.architectury"
+		}
 	}
 	maven {
+		name = "Mod Menu and Trinkets"
 		url "https://maven.terraformersmc.com/releases/"
+		content {
+			includeGroupAndSubgroups "com.terraformersmc"
+			includeGroupAndSubgroups "dev.emi"
+		}
 	}
 	maven {
-		name 'Gegy'
+		name 'SpruceUI'
 		url 'https://maven.gegy.dev'
+		content {
+			includeGroupAndSubgroups "dev.lambdaurora"
+		}
+	}
+	maven {
+		name = "Trinkets and Cardinal Components API"
+		url = 'https://maven.ladysnake.org/releases'
+		content {
+			includeGroupAndSubgroups "dev.emi"
+			includeGroupAndSubgroups 'dev.onyxstudios.cardinal-components-api'
+		}
+	}
+	maven {
+		name = "TslatEffectsLib"
+		url = "https://dl.cloudsmith.io/public/tslat/tel/maven/"
+		content {
+			includeGroupAndSubgroups "net.tslat.effectslib"
+		}
 	}
 }
 
@@ -72,18 +103,24 @@ dependencies {
 		officialMojangMappings()
 	}
 
-	modRuntimeOnly "dev.lambdaurora:spruceui:${spruceui_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
-//	modRuntimeOnly "maven.modrinth:huge-structure-blocks:${hugestructureblocks_version}"
-	modRuntimeOnly "maven.modrinth:worldedit:${worldedit_version}"
-	modRuntimeOnly "maven.modrinth:midnightlib:${midnightlib_version}-fabric"
-	modRuntimeOnly "com.terraformersmc:modmenu:${modmenu_version}"
-	modRuntimeOnly "maven.modrinth:jade:${jade_version}"
-
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+	modImplementation "dev.emi:trinkets:${trinkets_version}"
+	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-1.20.2:${tslateffectslib_version}"
+//	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-${minecraft_version}:${tslateffectslib_version}"
+
+	// For trinkets
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cca_version}"
+
+	modRuntimeOnly "dev.lambdaurora:spruceui:${spruceui_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
+	modRuntimeOnly "maven.modrinth:huge-structure-blocks:${hugestructureblocks_version}"
+	modRuntimeOnly "maven.modrinth:worldedit:${worldedit_id}"
+	modRuntimeOnly "maven.modrinth:midnightlib:${midnightlib_version}-fabric"
+	modRuntimeOnly "com.terraformersmc:modmenu:${modmenu_version}"
+	modRuntimeOnly "maven.modrinth:jade:${jade_version}"
 }
 
 processResources {

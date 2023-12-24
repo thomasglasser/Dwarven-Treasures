@@ -98,7 +98,7 @@ public class DwarvenTreasuresItems
 
     private static Item registerRing(String name)
     {
-        return register(name, new Item(RING_PROPERTIES), CreativeModeTabs.INGREDIENTS, CreativeModeTabs.COMBAT);
+        return register(name, new RingItem(RING_PROPERTIES), CreativeModeTabs.INGREDIENTS, CreativeModeTabs.COMBAT);
     }
 
     public static Map<ResourceKey<CreativeModeTab>, List<Item>> getItemsForTabs() {

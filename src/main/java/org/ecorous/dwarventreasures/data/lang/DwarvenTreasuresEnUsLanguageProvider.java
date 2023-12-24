@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ArmorItem;
 import org.ecorous.dwarventreasures.world.item.DwarvenTreasuresItems;
+import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
 import org.ecorous.dwarventreasures.world.level.block.DwarvenTreasuresBlocks;
 
 import java.util.Map;
@@ -41,6 +42,11 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
         translationBuilder.add(DwarvenTreasuresItems.MITHRIL_HOE, "Mithril Hoe");
 
         translationBuilder.add(DwarvenTreasuresBlocks.MITHRIL_BLOCK, "Block of Mithril");
+
+        translationBuilder.add(DwarvenTreasuresEnchantments.SUSURRUS, "Susurrus");
+        translationBuilder.add(DwarvenTreasuresEnchantments.ANOINTMENT, "Anointment");
+        translationBuilder.add(DwarvenTreasuresEnchantments.RADIANCE, "Radiance");
+        translationBuilder.add(DwarvenTreasuresEnchantments.FROST, "Frost");
 
         add(translationBuilder, DwarvenTreasuresItems.MITHRIL_UPGRADE_INGREDIENTS, "Mithril Ingot");
         add(translationBuilder, DwarvenTreasuresItems.MITHRIL_UPGRADE, "Mithril Upgrade");

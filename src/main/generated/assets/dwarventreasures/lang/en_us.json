@@ -1,5 +1,9 @@
 {
   "block.dwarventreasures.mithril_block": "Block of Mithril",
+  "enchantment.dwarventreasures.anointment": "Anointment",
+  "enchantment.dwarventreasures.frost": "Frost",
+  "enchantment.dwarventreasures.radiance": "Radiance",
+  "enchantment.dwarventreasures.susurrus": "Susurrus",
   "item.dwarventreasures.ancient_debris_ring": "Ancient Debris Ring",
   "item.dwarventreasures.copper_ring": "Copper Ring",
   "item.dwarventreasures.gold_ring": "Gold Ring",
