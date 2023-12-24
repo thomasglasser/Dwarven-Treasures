@@ -90,7 +90,6 @@ public class DwarvenTreasures implements ModInitializer {
 
 				List<ResourceLocation> netherTreasureTables = List.of(
 					BuiltInLootTables.BASTION_TREASURE,
-					BuiltInLootTables.BURIED_TREASURE,
 					BuiltInLootTables.PIGLIN_BARTERING
 				);
 				if (netherTreasureTables.contains(id))
