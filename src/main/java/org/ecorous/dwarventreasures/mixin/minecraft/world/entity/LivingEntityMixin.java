@@ -7,9 +7,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.material.FluidState;
+import net.tslat.effectslib.api.ExtendedEnchantment;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantmentUtils;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
-import org.ecorous.dwarventreasures.world.item.enchantment.ExtendedExtendedEnchantment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,22 +35,11 @@ public class LivingEntityMixin
 	{
 		if (!INSTANCE.level().isClientSide)
 		{
-			for (EquipmentSlot value : EquipmentSlot.values())
-			{
-				ItemStack stack = INSTANCE.getItemBySlot(value);
-				EnchantmentHelper.getEnchantments(stack).keySet().forEach(enchantment ->
-				{
-					if (stack.getCount() > 0 && enchantment instanceof ExtendedExtendedEnchantment eee)
-					{
-						eee.equippedTick(INSTANCE, INSTANCE.level(), stack);
-					}
-				});
-			}
 			TrinketsApi.getTrinketComponent(INSTANCE).ifPresent(trinketComponent -> trinketComponent.forEach(((slotReference, stack) -> EnchantmentHelper.getEnchantments(stack).keySet().forEach(enchantment ->
 			{
-				if (stack.getCount() > 0 && enchantment instanceof ExtendedExtendedEnchantment eee)
+				if (stack.getCount() > 0 && enchantment instanceof ExtendedEnchantment ee)
 				{
-					eee.equippedTick(INSTANCE, INSTANCE.level(), stack);
+					ee.tick(INSTANCE, stack);
 				}
 			}))));
 		}

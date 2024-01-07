@@ -5,13 +5,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.tslat.effectslib.api.ExtendedEnchantment;
 import org.ecorous.dwarventreasures.tags.DwarvenTreasuresItemTags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RingEnchantment extends ExtendedExtendedEnchantment
+public class RingEnchantment extends ExtendedEnchantment
 {
 	public static final int FIVE_MINUTES = 20 * 60 * 5;
 
@@ -39,7 +40,9 @@ public class RingEnchantment extends ExtendedExtendedEnchantment
 		return super.checkCompatibility(other) && !(other instanceof RingEnchantment);
 	}
 
-	// TODO: Ungrindable
-
-
+	@Override
+	public @Nullable Boolean shouldGrindstoneRemove(ItemStack stack)
+	{
+		return false;
+	}
 }

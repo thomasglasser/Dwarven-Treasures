@@ -1,7 +1,6 @@
 plugins {
-	id 'fabric-loom' version '1.+'
+	id 'fabric-loom' version '1.4.+'
 	id 'maven-publish'
-	
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -99,7 +98,7 @@ dependencies {
 
 	mappings loom.layered() {
 //		parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
-		parchment("org.parchmentmc.data:parchment-1.20.2:${parchment_version}@zip")
+		parchment("org.parchmentmc.data:parchment-1.20.3:${parchment_version}@zip")
 		officialMojangMappings()
 	}
 
@@ -108,8 +107,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	modImplementation "dev.emi:trinkets:${trinkets_version}"
-	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-1.20.2:${tslateffectslib_version}"
-//	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-${minecraft_version}:${tslateffectslib_version}"
+	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-${minecraft_version}:${tslateffectslib_version}"
 
 	// For trinkets
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cca_version}"

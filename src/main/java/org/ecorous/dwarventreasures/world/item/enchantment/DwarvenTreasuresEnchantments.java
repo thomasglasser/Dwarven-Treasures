@@ -29,12 +29,12 @@ public class DwarvenTreasuresEnchantments
 	public static final Enchantment SUSURRUS = register("susurrus", new RingEnchantment()
 	{
 		@Override
-		public void equippedTick(LivingEntity livingEntity, Level level, ItemStack stack)
+		public void tick(LivingEntity entity, ItemStack stack)
 		{
-			super.equippedTick(livingEntity, level, stack);
-			if (livingEntity.getActiveEffects().stream().noneMatch(effect -> effect.getEffect() == MobEffects.INVISIBILITY && effect.getAmplifier() >= 0 && !effect.endsWithin(20)))
+			super.tick(entity, stack);
+			if (entity.getActiveEffects().stream().noneMatch(effect -> effect.getEffect() == MobEffects.INVISIBILITY && effect.getAmplifier() >= 0 && !effect.endsWithin(20)))
 			{
-				livingEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 60));
+				entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 60));
 			}
 			int ticks = stack.getOrCreateTag().getInt(SUSURRUS_TICKS_TAG);
 			System.out.println(ticks);
@@ -43,12 +43,11 @@ public class DwarvenTreasuresEnchantments
 			for (int i = 1; i <= effects.size(); i++)
 			{
 				int finalI = i;
-				if (ticks >= FIVE_MINUTES * i && livingEntity.getActiveEffects().stream().noneMatch((effect) -> effect.getEffect() == effects.get(finalI - 1) && effect.getAmplifier() >= 0 && !effect.endsWithin(20)))
+				if (ticks >= FIVE_MINUTES * i && entity.getActiveEffects().stream().noneMatch((effect) -> effect.getEffect() == effects.get(finalI - 1) && effect.getAmplifier() >= 0 && !effect.endsWithin(20)))
 				{
-					livingEntity.addEffect(new MobEffectInstance(effects.get(i - 1), 60));
+					entity.addEffect(new MobEffectInstance(effects.get(i - 1), 60));
 				}
 			}
-
 		}
 
 		@Override
@@ -67,19 +66,20 @@ public class DwarvenTreasuresEnchantments
 	public static final Enchantment RADIANCE = register("radiance", new RingEnchantment()
 	{
 		@Override
-		public void equippedTick(LivingEntity livingEntity, Level level, ItemStack stack)
+		public void tick(LivingEntity livingEntity, ItemStack stack)
 		{
-			super.equippedTick(livingEntity, level, stack);
-			List<Entity> entities = level.getEntities(livingEntity, livingEntity.getBoundingBox().inflate(8), target -> target.getType().is(EntityTypeTags.UNDEAD));
+			super.tick(livingEntity, stack);
+			List<Entity> entities = livingEntity.level().getEntities(livingEntity, livingEntity.getBoundingBox().inflate(8), target -> target.getType().is(EntityTypeTags.UNDEAD));
 			entities.forEach(target -> target.setSecondsOnFire(5));
 		}
 	});
 	public static final Enchantment FROST = register("frost", new RingEnchantment()
 	{
 		@Override
-		public void equippedTick(LivingEntity livingEntity, Level level, ItemStack stack)
+		public void tick(LivingEntity livingEntity, ItemStack stack)
 		{
-			super.equippedTick(livingEntity, level, stack);
+			super.tick(livingEntity, stack);
+			Level level = livingEntity.level();
 			List<Entity> entities = level.getEntities(livingEntity, livingEntity.getBoundingBox().inflate(8), entity -> true);
 			for (Entity entity : entities)
 			{
