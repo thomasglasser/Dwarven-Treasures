@@ -33,15 +33,12 @@ public class LivingEntityMixin
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void dwarventreasures_tick(CallbackInfo ci)
 	{
-		if (!INSTANCE.level().isClientSide)
+		TrinketsApi.getTrinketComponent(INSTANCE).ifPresent(trinketComponent -> trinketComponent.forEach(((slotReference, stack) -> EnchantmentHelper.getEnchantments(stack).keySet().forEach(enchantment ->
 		{
-			TrinketsApi.getTrinketComponent(INSTANCE).ifPresent(trinketComponent -> trinketComponent.forEach(((slotReference, stack) -> EnchantmentHelper.getEnchantments(stack).keySet().forEach(enchantment ->
+			if (stack.getCount() > 0 && enchantment instanceof ExtendedEnchantment ee)
 			{
-				if (stack.getCount() > 0 && enchantment instanceof ExtendedEnchantment ee)
-				{
-					ee.tick(INSTANCE, stack);
-				}
-			}))));
-		}
+				ee.tick(INSTANCE, stack);
+			}
+		}))));
 	}
 }

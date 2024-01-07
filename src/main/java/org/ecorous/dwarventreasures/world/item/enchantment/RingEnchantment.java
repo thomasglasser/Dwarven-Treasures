@@ -31,7 +31,7 @@ public class RingEnchantment extends ExtendedEnchantment
 	@Override
 	public boolean canEnchant(ItemStack stack, String enchantSource)
 	{
-		return stack.is(DwarvenTreasuresItemTags.RINGS) && ALLOWED_SOURCES.contains(enchantSource);
+		return ALLOWED_SOURCES.contains(enchantSource);
 	}
 
 	@Override

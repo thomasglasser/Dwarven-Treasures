@@ -104,12 +104,12 @@ dependencies {
 
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
+	include modImplementation("maven.modrinth:midnightlib:${midnightlib_version}-fabric")
+
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	modImplementation "dev.emi:trinkets:${trinkets_version}"
 	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-${minecraft_version}:${tslateffectslib_version}"
-
-	// For trinkets
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cca_version}"
 
 	modRuntimeOnly "dev.lambdaurora:spruceui:${spruceui_version}"
@@ -121,11 +121,24 @@ dependencies {
 	modRuntimeOnly "maven.modrinth:jade:${jade_version}"
 }
 
-processResources {
-	inputs.property "version", mod_version
+tasks.withType(ProcessResources).configureEach {
+	var replaceProperties = [
+			mod_name: mod_name,
+			resource_pack_format_number: resource_pack_format_number,
+			mod_id: mod_id,
+			version: project.version,
+			mod_author: mod_author,
+			loader_version: loader_version,
+			fabric_version: fabric_version,
+			minecraft_version: minecraft_version,
+			cca_version: cca_version,
+			trinkets_version: trinkets_version,
+			tslateffectslib_version: tslateffectslib_version
+	]
+	inputs.properties replaceProperties
 
-	filesMatching("fabric.mod.json") {
-		expand "version": mod_version
+	filesMatching(['fabric.mod.json','pack.mcmeta']) {
+		expand replaceProperties + [project: project]
 	}
 }
 

@@ -1,22 +1,20 @@
 {
 	"schemaVersion": 1,
-	"id": "dwarventreasures",
+	"id": "${mod_id}",
 	"version": "${version}",
-	"name": "Dwarven Treasures",
+	"name": "${mod_name}",
 	"description": "A small Tolkien-inspired mod that brings to minecraft some of the greatest treasures ever forged by the world's greatest metalworkers: Dwarves.",
 	"authors": [
-		"Ecorous",
-		"Thomas Glasser",
-		"Tir-far-thoinn"
+		"${mod_author}"
 	],
 	"contact": {
 		"homepage": "https://github.com/thomasglasser/dwarven-treasures/wiki",
 		"sources": "https://github.com/thomasglasser/dwarven-treasures"
 	},
 	"license": "MIT",
-	"icon": "assets/dwarven-treasures/icon.png",
+	"icon": "assets/${mod_id}/icon.png",
 	"environment": "*",
-	"accessWidener": "dwarventreasures.accesswidener",
+	"accessWidener": "${mod_id}.accesswidener",
 	"entrypoints": {
 		"main": [
 			"org.ecorous.dwarventreasures.DwarvenTreasures"
@@ -26,15 +24,29 @@
 		],
 		"client": [
 			"org.ecorous.dwarventreasures.client.DwarvenTreasuresClient"
+		],
+		"cardinal-components": [
+			"org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresEntityComponents"
 		]
 	},
 	"mixins": [
-		"dwarventreasures.mixins.json"
+		"${mod_id}.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.18",
-		"minecraft": ">=1.19.4",
+		"fabricloader": ">=${loader_version}",
+		"fabric-api": ">=${fabric_version}",
+		"minecraft": ">=${minecraft_version}",
 		"java": ">=17",
-		"fabric-api": "*"
+		"trinkets": ">=${trinkets_version}",
+		"tslateffectslib": ">=${tslateffectslib_version}",
+		"cardinal-components": ">=${cca_version}"
+	},
+	"custom": {
+		"cardinal-components": [
+			"${mod_id}:ring"
+		],
+		"mc-publish": {
+			"loaders": ["fabric", "quilt"]
+		}
 	}
 }

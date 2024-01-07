@@ -18,7 +18,6 @@ public class EnchantableTrinketItem extends TrinketItem
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity)
 	{
 		super.onEquip(stack, slot, entity);
-		System.out.println(EnchantmentHelper.getEnchantments(stack));
 		if (stack.isEnchanted()) EnchantmentHelper.getEnchantments(stack).keySet().forEach(e ->
 		{
 			if (e instanceof ExtendedEnchantment ee)

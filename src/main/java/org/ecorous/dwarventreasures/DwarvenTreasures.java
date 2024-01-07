@@ -1,8 +1,10 @@
 package org.ecorous.dwarventreasures;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -15,9 +17,11 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.TagEntry;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import org.ecorous.dwarventreasures.server.DwarvenTreasuresServerConfig;
 import org.ecorous.dwarventreasures.tags.DwarvenTreasuresEntityTypeTags;
 import org.ecorous.dwarventreasures.tags.DwarvenTreasuresItemTags;
 import org.ecorous.dwarventreasures.world.item.DwarvenTreasuresItems;
+import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
 import org.ecorous.dwarventreasures.world.level.block.DwarvenTreasuresBlocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +41,15 @@ public class DwarvenTreasures implements ModInitializer {
 
 		initRegistries();
 		registerEvents();
+
+		MidnightConfig.init(DwarvenTreasures.MOD_ID, DwarvenTreasuresServerConfig.class);
 	}
 
 	private void initRegistries()
 	{
 		DwarvenTreasuresItems.init();
 		DwarvenTreasuresBlocks.init();
+		DwarvenTreasuresEnchantments.init();
 	}
 
 	private void registerEvents()
