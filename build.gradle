@@ -6,7 +6,7 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = "${mod_name}-${minecraft_version}"
+archivesBaseName = "${mod_id}-${minecraft_version}"
 
 version = project.mod_version
 group = project.group
