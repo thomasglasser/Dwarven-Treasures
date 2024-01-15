@@ -12,13 +12,13 @@ import org.ecorous.dwarventreasures.DwarvenTreasures;
 
 public class DwarvenTreasuresBlocks
 {
-    public static final Block MITHRIL_BLOCK = register("mithril_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
+    public static final Block MITHRIL_BLOCK = register("mithril_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK), true);
 
-    private static Block register(String name, FabricBlockSettings settings)
+    private static Block register(String name, FabricBlockSettings settings, boolean item)
     {
         Block block = new Block(settings);
         ResourceLocation rl = DwarvenTreasures.modLoc(name);
-        Registry.register(BuiltInRegistries.ITEM, rl, new BlockItem(block, new Item.Properties()));
+        if (item) Registry.register(BuiltInRegistries.ITEM, rl, new BlockItem(block, new Item.Properties()));
         return Registry.register(BuiltInRegistries.BLOCK, rl, block);
     }
 

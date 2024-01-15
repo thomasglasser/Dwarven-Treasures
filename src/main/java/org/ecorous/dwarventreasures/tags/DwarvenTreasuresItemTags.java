@@ -8,6 +8,7 @@ import org.ecorous.dwarventreasures.DwarvenTreasures;
 public class DwarvenTreasuresItemTags
 {
 	public static final TagKey<Item> RINGS = register("rings");
+	public static final TagKey<Item> ATTUNABLE = register("attunable");
 
 	private static TagKey<Item> register(String name)
 	{

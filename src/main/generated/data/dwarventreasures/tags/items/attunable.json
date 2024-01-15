@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dwarventreasures:mithril_sword",
+    "dwarventreasures:mithril_axe",
+    "dwarventreasures:mithril_pickaxe",
+    "dwarventreasures:mithril_shovel",
+    "dwarventreasures:mithril_hoe"
+  ]
+}

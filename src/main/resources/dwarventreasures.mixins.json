@@ -3,7 +3,10 @@
   "package": "org.ecorous.dwarventreasures.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "minecraft.world.entity.LivingEntityMixin"
+    "minecraft.world.entity.LivingEntityMixin",
+    "minecraft.world.item.DiggerItemMixin",
+    "minecraft.world.item.ItemStackMixin",
+    "minecraft.world.item.SwordItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

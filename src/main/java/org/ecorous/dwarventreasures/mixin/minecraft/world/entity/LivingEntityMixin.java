@@ -2,9 +2,8 @@ package org.ecorous.dwarventreasures.mixin.minecraft.world.entity;
 
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.material.FluidState;
 import net.tslat.effectslib.api.ExtendedEnchantment;
@@ -14,8 +13,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import static org.ecorous.dwarventreasures.world.item.AttunementUtils.ATTUNEMENT_DATA_TAG;
+import static org.ecorous.dwarventreasures.world.item.AttunementUtils.isAttunedForEntityType;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin
@@ -40,5 +43,15 @@ public class LivingEntityMixin
 				ee.tick(INSTANCE, stack);
 			}
 		}))));
+	}
+
+	@ModifyVariable(method = "hurt", at = @At("HEAD"), index = 2, argsOnly = true)
+	private float dwarventreasures_hurt(float value, DamageSource source)
+	{
+		if (source.getDirectEntity() instanceof LivingEntity livingEntity && isAttunedForEntityType(livingEntity.getMainHandItem().getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG), INSTANCE.getType()))
+		{
+			return value * 2F;
+		}
+		return value;
 	}
 }

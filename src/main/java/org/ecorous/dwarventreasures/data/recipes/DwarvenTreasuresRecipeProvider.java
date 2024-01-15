@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.ecorous.dwarventreasures.world.item.DwarvenTreasuresItems;
+import org.ecorous.dwarventreasures.world.level.block.DwarvenTreasuresBlocks;
 
 public class DwarvenTreasuresRecipeProvider extends FabricRecipeProvider {
     public DwarvenTreasuresRecipeProvider(FabricDataOutput output) {
@@ -18,15 +19,17 @@ public class DwarvenTreasuresRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput writer) {
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_CHESTPLATE, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.CHESTPLATE));
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_LEGGINGS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.LEGGINGS));
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_HELMET, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.HELMET));
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_BOOTS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.BOOTS));
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SWORD, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_SWORD);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_AXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_AXE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_PICKAXE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_HOE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_HOE);
-        DwarvenTreasuresRecipeProvider.mithrilSmithing(writer, Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_SHOVEL);
+        mithrilSmithing(writer, Items.DIAMOND_CHESTPLATE, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.CHESTPLATE));
+        mithrilSmithing(writer, Items.DIAMOND_LEGGINGS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.LEGGINGS));
+        mithrilSmithing(writer, Items.DIAMOND_HELMET, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.HELMET));
+        mithrilSmithing(writer, Items.DIAMOND_BOOTS, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_ARMOR.get(ArmorItem.Type.BOOTS));
+        mithrilSmithing(writer, Items.DIAMOND_SWORD, RecipeCategory.COMBAT, DwarvenTreasuresItems.MITHRIL_SWORD);
+        mithrilSmithing(writer, Items.DIAMOND_AXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_AXE);
+        mithrilSmithing(writer, Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_PICKAXE);
+        mithrilSmithing(writer, Items.DIAMOND_HOE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_HOE);
+        mithrilSmithing(writer, Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_SHOVEL);
+
+        nineBlockStorageRecipes(writer, RecipeCategory.MISC, DwarvenTreasuresItems.MITHRIL_INGOT, RecipeCategory.BUILDING_BLOCKS, DwarvenTreasuresBlocks.MITHRIL_BLOCK.asItem());
     }
 
     public static void mithrilSmithing(RecipeOutput finishedRecipeConsumer, Item ingredientItem, RecipeCategory category, Item resultItem) {

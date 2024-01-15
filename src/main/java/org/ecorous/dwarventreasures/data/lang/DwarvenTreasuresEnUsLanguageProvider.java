@@ -5,8 +5,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import org.ecorous.dwarventreasures.DwarvenTreasures;
 import org.ecorous.dwarventreasures.server.DwarvenTreasuresServerConfig;
+import org.ecorous.dwarventreasures.world.item.AttunementUtils;
 import org.ecorous.dwarventreasures.world.item.DwarvenTreasuresItems;
 import org.ecorous.dwarventreasures.world.item.RingItem;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
@@ -59,6 +61,12 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
         add(DwarvenTreasuresItems.MITHRIL_UPGRADE, "Mithril Upgrade");
         add(DwarvenTreasuresItems.MITHRIL_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, "Put a Mithril Ingot here");
 
+        addAttunement(DwarvenTreasuresItems.MITHRIL_SWORD, "Slayer");
+        addAttunement(DwarvenTreasuresItems.MITHRIL_AXE, "Splitter");
+        addAttunement(DwarvenTreasuresItems.MITHRIL_PICKAXE, "Shatterer");
+        addAttunement(DwarvenTreasuresItems.MITHRIL_SHOVEL, "Shifter");
+        addAttunement(DwarvenTreasuresItems.MITHRIL_HOE, "Forager");
+
         addConfigs();
     }
 
@@ -110,5 +118,10 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
     private void addConfigCategory(String field, String name)
     {
         add(DwarvenTreasures.MOD_ID + ".midnightconfig.category." + field, name);
+    }
+
+    private void addAttunement(Item item, String name)
+    {
+        add(AttunementUtils.ATTUNED_SUFFIX.apply(item), name);
     }
 }

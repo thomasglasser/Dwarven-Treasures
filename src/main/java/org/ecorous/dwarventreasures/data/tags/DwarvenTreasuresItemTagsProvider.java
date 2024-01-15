@@ -29,6 +29,13 @@ public class DwarvenTreasuresItemTagsProvider extends FabricTagProvider.ItemTagP
 				.add(DwarvenTreasuresItems.ANCIENT_DEBRIS_RING)
 				.add(DwarvenTreasuresItems.MITHRIL_RING);
 
+		getOrCreateTagBuilder(DwarvenTreasuresItemTags.ATTUNABLE)
+				.add(DwarvenTreasuresItems.MITHRIL_SWORD)
+				.add(DwarvenTreasuresItems.MITHRIL_AXE)
+				.add(DwarvenTreasuresItems.MITHRIL_PICKAXE)
+				.add(DwarvenTreasuresItems.MITHRIL_SHOVEL)
+				.add(DwarvenTreasuresItems.MITHRIL_HOE);
+
 		trinketsTag("hand", "ring")
 				.addTag(DwarvenTreasuresItemTags.RINGS);
 		trinketsTag("offhand", "ring")
