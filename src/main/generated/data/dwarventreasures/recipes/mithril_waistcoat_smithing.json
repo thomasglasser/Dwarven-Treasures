@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "dwarventreasures:mithril_ingot"
+  },
+  "base": {
+    "item": "minecraft:chainmail_chestplate"
+  },
+  "result": {
+    "item": "dwarventreasures:mithril_waistcoat"
+  },
+  "template": {
+    "item": "dwarventreasures:mithril_upgrade_smithing_template"
+  }
+}

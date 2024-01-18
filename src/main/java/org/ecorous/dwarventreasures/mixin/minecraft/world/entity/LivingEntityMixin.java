@@ -1,15 +1,21 @@
 package org.ecorous.dwarventreasures.mixin.minecraft.world.entity;
 
+import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.material.FluidState;
 import net.tslat.effectslib.api.ExtendedEnchantment;
+import org.ecorous.dwarventreasures.world.item.DwarvenTreasuresItems;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantmentUtils;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,8 +27,10 @@ import static org.ecorous.dwarventreasures.world.item.AttunementUtils.ATTUNEMENT
 import static org.ecorous.dwarventreasures.world.item.AttunementUtils.isAttunedForEntityType;
 
 @Mixin(LivingEntity.class)
-public class LivingEntityMixin
+public abstract class LivingEntityMixin
 {
+	@Shadow public abstract ItemStack getItemBySlot(EquipmentSlot var1);
+
 	@Unique
 	private final LivingEntity INSTANCE = ((LivingEntity)(Object)this);
 
@@ -48,10 +56,22 @@ public class LivingEntityMixin
 	@ModifyVariable(method = "hurt", at = @At("HEAD"), index = 2, argsOnly = true)
 	private float dwarventreasures_hurt(float value, DamageSource source)
 	{
-		if (source.getDirectEntity() instanceof LivingEntity livingEntity && isAttunedForEntityType(livingEntity.getMainHandItem().getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG), INSTANCE.getType()))
+		boolean doubleDamage = source.getDirectEntity() instanceof LivingEntity livingEntity && isAttunedForEntityType(livingEntity.getMainHandItem().getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG), INSTANCE.getType());
+		if (INSTANCE instanceof Player player && ((doubleDamage && value * 2.0 >= player.getHealth()) || value >= player.getHealth()))
+		{
+			TrinketComponent trinketComponent = TrinketsApi.getTrinketComponent(player).orElseThrow();
+			if (trinketComponent.isEquipped(DwarvenTreasuresItems.MITHRIL_WAISTCOAT))
+			{
+				trinketComponent.getEquipped(DwarvenTreasuresItems.MITHRIL_WAISTCOAT).get(0).getB().hurtAndBreak(DwarvenTreasuresItems.MITHRIL_WAISTCOAT.getMaxDamage(), INSTANCE, (entity) -> entity.broadcastBreakEvent(EquipmentSlot.CHEST));
+				return INSTANCE.getHealth() - 1;
+			}
+		}
+
+		if (doubleDamage)
 		{
 			return value * 2F;
 		}
+
 		return value;
 	}
 }

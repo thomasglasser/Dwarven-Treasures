@@ -28,6 +28,7 @@ public class DwarvenTreasuresRecipeProvider extends FabricRecipeProvider {
         mithrilSmithing(writer, Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_PICKAXE);
         mithrilSmithing(writer, Items.DIAMOND_HOE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_HOE);
         mithrilSmithing(writer, Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_SHOVEL);
+        mithrilSmithing(writer, Items.CHAINMAIL_CHESTPLATE, RecipeCategory.TOOLS, DwarvenTreasuresItems.MITHRIL_WAISTCOAT);
 
         nineBlockStorageRecipes(writer, RecipeCategory.MISC, DwarvenTreasuresItems.MITHRIL_INGOT, RecipeCategory.BUILDING_BLOCKS, DwarvenTreasuresBlocks.MITHRIL_BLOCK.asItem());
     }

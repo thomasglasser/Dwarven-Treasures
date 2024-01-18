@@ -23,5 +23,8 @@ public class DwarvenTreasuresEntityTypeTagsProvider extends FabricTagProvider.En
 				.add(EntityType.SALMON)
 				.add(EntityType.PUFFERFISH)
 				.add(EntityType.TROPICAL_FISH);
+
+		getOrCreateTagBuilder(DwarvenTreasuresEntityTypeTags.UNATTUNABLE)
+				.add(EntityType.PLAYER);
 	}
 }

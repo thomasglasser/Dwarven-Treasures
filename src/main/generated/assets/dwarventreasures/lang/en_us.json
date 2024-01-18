@@ -39,8 +39,10 @@
   "item.dwarventreasures.mithril_shovel.attuned": "Shifter",
   "item.dwarventreasures.mithril_sword": "Mithril Sword",
   "item.dwarventreasures.mithril_sword.attuned": "Slayer",
+  "item.dwarventreasures.mithril_waistcoat": "Mithril Waistcoat",
   "item.dwarventreasures.netherite_ring": "Netherite Ring",
   "item.dwarventreasures.smithing_template.mithril_upgrade.additions_slot_description": "Put a Mithril Ingot here",
   "item.dwarventreasures.smithing_template.mithril_upgrade.ingredients": "Mithril Ingot",
+  "trinkets.slot.chest.waistcoat": "Waistcoat",
   "upgrade.dwarventreasures.mithril_upgrade": "Mithril Upgrade"
 }

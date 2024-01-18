@@ -19,6 +19,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import org.ecorous.dwarventreasures.tags.DwarvenTreasuresBlockTags;
+import org.ecorous.dwarventreasures.tags.DwarvenTreasuresEntityTypeTags;
+import org.ecorous.dwarventreasures.tags.DwarvenTreasuresItemTags;
 import org.ecorous.dwarventreasures.world.item.AttunementUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -48,32 +51,40 @@ public abstract class ItemStackMixin
 
 	@Inject(method = "hurtEnemy", at = @At("TAIL"))
 	public void dwarventreasures_hurtEnemy(LivingEntity entity, Player player, CallbackInfo ci) {
-		CompoundTag attunementDataTag = getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG);
-		if (!isAttuned(attunementDataTag) && entity.getHealth() <= 0.0f)
+		if (INSTANCE.is(DwarvenTreasuresItemTags.ATTUNABLE))
 		{
-			String entityKey = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();
-			CompoundTag entitiesKilled = attunementDataTag.getCompound(ENTITIES_KILLED_TAG);
-			entitiesKilled.putInt(entityKey, entitiesKilled.getInt(entityKey) + 1);
-			attunementDataTag.put(ENTITIES_KILLED_TAG, entitiesKilled);
-			getOrCreateTag().put(ATTUNEMENT_DATA_TAG, attunementDataTag);
-			if (entitiesKilled.getInt(entityKey) >= ATTUNEMENT_THRESHOLD) {
-				player.setItemInHand(player.getUsedItemHand(), attune(INSTANCE, entity.getType()));
+			CompoundTag attunementDataTag = getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG);
+			if (!isAttuned(attunementDataTag) && entity.getHealth() <= 0.0f && !entity.getType().is(DwarvenTreasuresEntityTypeTags.UNATTUNABLE))
+			{
+				String entityKey = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();
+				CompoundTag entitiesKilled = attunementDataTag.getCompound(ENTITIES_KILLED_TAG);
+				entitiesKilled.putInt(entityKey, entitiesKilled.getInt(entityKey) + 1);
+				attunementDataTag.put(ENTITIES_KILLED_TAG, entitiesKilled);
+				getOrCreateTag().put(ATTUNEMENT_DATA_TAG, attunementDataTag);
+				if (entitiesKilled.getInt(entityKey) >= ATTUNEMENT_THRESHOLD)
+				{
+					player.setItemInHand(player.getUsedItemHand(), attune(INSTANCE, entity.getType()));
+				}
 			}
 		}
 	}
 
 	@Inject(method = "mineBlock", at = @At("TAIL"))
 	public void dwarventreasures_mineBlock(Level level, BlockState state, BlockPos pos, Player player, CallbackInfo ci) {
-		CompoundTag attunementDataTag = getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG);
-		if (state.getDestroySpeed(level, pos) != 0.0f && !isAttuned(attunementDataTag))
+		if (INSTANCE.is(DwarvenTreasuresItemTags.ATTUNABLE))
 		{
-			String blockKey = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
-			CompoundTag blocksBroken = attunementDataTag.getCompound(BLOCKS_BROKEN_TAG);
-			blocksBroken.putInt(blockKey, blocksBroken.getInt(blockKey) + 1);
-			attunementDataTag.put(BLOCKS_BROKEN_TAG, blocksBroken);
-			getOrCreateTag().put(ATTUNEMENT_DATA_TAG, attunementDataTag);
-			if (blocksBroken.getInt(blockKey) >= ATTUNEMENT_THRESHOLD) {
-				player.setItemInHand(player.getUsedItemHand(), attune(INSTANCE, state.getBlock()));
+			CompoundTag attunementDataTag = getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG);
+			if (state.getDestroySpeed(level, pos) != 0.0f && !isAttuned(attunementDataTag) && !state.is(DwarvenTreasuresBlockTags.UNATTUNABLE))
+			{
+				String blockKey = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
+				CompoundTag blocksBroken = attunementDataTag.getCompound(BLOCKS_BROKEN_TAG);
+				blocksBroken.putInt(blockKey, blocksBroken.getInt(blockKey) + 1);
+				attunementDataTag.put(BLOCKS_BROKEN_TAG, blocksBroken);
+				getOrCreateTag().put(ATTUNEMENT_DATA_TAG, attunementDataTag);
+				if (blocksBroken.getInt(blockKey) >= ATTUNEMENT_THRESHOLD)
+				{
+					player.setItemInHand(player.getUsedItemHand(), attune(INSTANCE, state.getBlock()));
+				}
 			}
 		}
 	}

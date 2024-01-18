@@ -40,6 +40,8 @@ public class DwarvenTreasuresItemTagsProvider extends FabricTagProvider.ItemTagP
 				.addTag(DwarvenTreasuresItemTags.RINGS);
 		trinketsTag("offhand", "ring")
 				.addTag(DwarvenTreasuresItemTags.RINGS);
+		trinketsTag("chest", "waistcoat")
+				.add(DwarvenTreasuresItems.MITHRIL_WAISTCOAT);
 	}
 
 	protected FabricTagProvider<Item>.FabricTagBuilder trinketsTag(String group, String slot)

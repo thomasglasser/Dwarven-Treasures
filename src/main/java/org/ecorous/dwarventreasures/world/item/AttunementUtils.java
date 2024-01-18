@@ -18,6 +18,8 @@ public class AttunementUtils
 	public static final int ATTUNEMENT_THRESHOLD = 40;
 
 	public static final String ATTUNEMENT_DATA_TAG = "AttunementData";
+	public static final String PREFIX_TAG = "Prefix";
+	public static final String SUFFIX_TAG = "Suffix";
 	public static final String ENTITIES_KILLED_TAG = "EntitiesKilled";
 	public static final String BLOCKS_BROKEN_TAG = "BlocksBroken";
 
@@ -32,7 +34,8 @@ public class AttunementUtils
 		if (!attunementTag.getBoolean(ATTUNED_TAG))
 		{
 			attunementTag.putBoolean(ATTUNED_TAG, true);
-			stack.setHoverName(stack.getHoverName().copy().append(Component.literal(" ").append(Component.translatable(prefix)).append(Component.literal("-")).append(Component.translatable(ATTUNED_SUFFIX.apply(stack.getItem())))));
+			attunementTag.putString(PREFIX_TAG, prefix);
+			attunementTag.putString(SUFFIX_TAG, ATTUNED_SUFFIX.apply(stack.getItem()));
 		}
 		return stack;
 	}
@@ -68,6 +71,11 @@ public class AttunementUtils
 		return tag.getBoolean(ATTUNED_TAG);
 	}
 
+	public static boolean isAttuned(ItemStack stack)
+	{
+		return stack.getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG).getBoolean(ATTUNED_TAG);
+	}
+
 	public static boolean isAttunedForBlock(CompoundTag tag, Block block)
 	{
 		return isAttuned(tag) && tag.getString(ATTUNEMENT_BLOCK_TAG).equals(BLOCK_PREFIX.apply(block));
@@ -76,5 +84,16 @@ public class AttunementUtils
 	public static boolean isAttunedForEntityType(CompoundTag tag, EntityType<?> entityType)
 	{
 		return isAttuned(tag) && tag.getString(ATTUNEMENT_ENTITY_TYPE_TAG).equals(ENTITY_TYPE_PREFIX.apply(entityType));
+	}
+
+	public static Component getAttunedTooltip(ItemStack stack)
+	{
+		CompoundTag attunementTag = tag(stack);
+		return Component.translatable(attunementTag.getString(PREFIX_TAG)).append("-").append(Component.translatable(attunementTag.getString(SUFFIX_TAG)));
+	}
+
+	public static CompoundTag tag(ItemStack stack)
+	{
+		return stack.getOrCreateTag().getCompound(ATTUNEMENT_DATA_TAG);
 	}
 }

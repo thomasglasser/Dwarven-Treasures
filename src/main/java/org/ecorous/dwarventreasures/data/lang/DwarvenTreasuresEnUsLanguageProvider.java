@@ -49,6 +49,7 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
         translationBuilder.add(DwarvenTreasuresItems.MITHRIL_PICKAXE, "Mithril Pickaxe");
         translationBuilder.add(DwarvenTreasuresItems.MITHRIL_SHOVEL, "Mithril Shovel");
         translationBuilder.add(DwarvenTreasuresItems.MITHRIL_HOE, "Mithril Hoe");
+        translationBuilder.add(DwarvenTreasuresItems.MITHRIL_WAISTCOAT, "Mithril Waistcoat");
 
         translationBuilder.add(DwarvenTreasuresBlocks.MITHRIL_BLOCK, "Block of Mithril");
 
@@ -68,6 +69,8 @@ public class DwarvenTreasuresEnUsLanguageProvider extends FabricLanguageProvider
         addAttunement(DwarvenTreasuresItems.MITHRIL_HOE, "Forager");
 
         addConfigs();
+
+        translationBuilder.add("trinkets.slot.chest.waistcoat", "Waistcoat");
     }
 
     protected void add(Component component, String name)

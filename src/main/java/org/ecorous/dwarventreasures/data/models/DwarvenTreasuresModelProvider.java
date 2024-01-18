@@ -28,8 +28,10 @@ public class DwarvenTreasuresModelProvider extends FabricModelProvider {
         flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_RING);
         flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_INGOT);
         flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_UPGRADE_SMITHING_TEMPLATE);
+        flat(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_WAISTCOAT);
         DwarvenTreasuresItems.MITHRIL_ARMOR.forEach((type, item) ->
                 flat(itemModelGenerator, item));
+
         handheld(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_SWORD);
         handheld(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_AXE);
         handheld(itemModelGenerator, DwarvenTreasuresItems.MITHRIL_PICKAXE);

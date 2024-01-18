@@ -9,6 +9,7 @@ import org.ecorous.dwarventreasures.DwarvenTreasures;
 public class DwarvenTreasuresEntityTypeTags
 {
 	public static final TagKey<EntityType<?>> FISHES = registerCommon("fishes");
+	public static final TagKey<EntityType<?>> UNATTUNABLE = register("unattunable");
 
 	private static TagKey<EntityType<?>> register(String name)
 	{
