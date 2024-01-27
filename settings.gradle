@@ -1,4 +1,8 @@
 pluginManagement {
+    plugins {
+        id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+    }
+
     repositories {
         maven {
             name = 'Fabric'
@@ -7,6 +11,20 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    buildscript {
+        configurations.all {
+            resolutionStrategy {
+                eachDependency {
+                    if (requested.group == "com.google.code.gson" && requested.name == "gson") {
+                        useVersion("2.10.1")
+                        because("Fabric Loom requires a more recent version of Guava than FooJay toolchains")
+                    }
+                }
+            }
+        }
+    }
+
     resolutionStrategy {
         eachPlugin {
             if (requested.id.toString() == 'org.spongepowered.mixin') {
@@ -14,8 +32,4 @@ pluginManagement {
             }
         }
     }
-}
-
-plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
 }

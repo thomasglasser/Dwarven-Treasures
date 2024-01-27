@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.4.+'
+	id 'fabric-loom' version '1.5.+'
 	id 'maven-publish'
 }
 
@@ -110,6 +110,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	modImplementation "dev.emi:trinkets:${trinkets_version}"
 	modImplementation "net.tslat.effectslib:TslatEffectsLib-fabric-${minecraft_version}:${tslateffectslib_version}"
+
+	// For Trinkets
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cca_version}"
 
 	modRuntimeOnly "dev.lambdaurora:spruceui:${spruceui_version}"
@@ -131,7 +133,6 @@ tasks.withType(ProcessResources).configureEach {
 			loader_version: loader_version,
 			fabric_version: fabric_version,
 			minecraft_version: minecraft_version,
-			cca_version: cca_version,
 			trinkets_version: trinkets_version,
 			tslateffectslib_version: tslateffectslib_version
 	]

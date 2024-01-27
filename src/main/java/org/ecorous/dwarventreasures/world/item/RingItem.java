@@ -11,8 +11,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantmentUtils;
 import org.ecorous.dwarventreasures.world.item.enchantment.DwarvenTreasuresEnchantments;
-import org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresEntityComponents;
-import org.ecorous.dwarventreasures.world.level.storage.RingComponent;
+import org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresData;
+import org.ecorous.dwarventreasures.world.level.storage.RingData;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -37,11 +37,11 @@ public class RingItem extends EnchantableTrinketItem implements Equipable
 		super.inventoryTick(stack, level, entity, slotId, isSelected);
 		if (stack.isEnchantable())
 			stack.enchant(RING_ENCHANTMENTS.get(level.random.nextInt(RING_ENCHANTMENTS.size())), 1);
-		RingComponent ringComponent = DwarvenTreasuresEntityComponents.RING.get(entity);
-		int ticks = ringComponent.getSusurrusCooldown();
+		RingData ringData = DwarvenTreasuresData.get(entity, DwarvenTreasuresData.RING);
+		int ticks = ringData.getSusurrusCooldown();
 		if (!level.isClientSide && ticks > 0 && entity instanceof LivingEntity livingEntity && DwarvenTreasuresEnchantmentUtils.getEnchantmentLevel(DwarvenTreasuresEnchantments.SUSURRUS, livingEntity) <= 0)
 		{
-			ringComponent.setSusurrusCooldown(Math.max(0, ticks - 2));
+			ringData.setSusurrusCooldown(Math.max(0, ticks - 2));
 		}
 	}
 

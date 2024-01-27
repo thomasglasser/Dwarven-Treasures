@@ -24,9 +24,6 @@
 		],
 		"client": [
 			"org.ecorous.dwarventreasures.client.DwarvenTreasuresClient"
-		],
-		"cardinal-components": [
-			"org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresEntityComponents"
 		]
 	},
 	"mixins": [
@@ -38,13 +35,9 @@
 		"minecraft": ">=${minecraft_version}",
 		"java": ">=17",
 		"trinkets": ">=${trinkets_version}",
-		"tslateffectslib": ">=${tslateffectslib_version}",
-		"cardinal-components": ">=${cca_version}"
+		"tslateffectslib": ">=${tslateffectslib_version}"
 	},
 	"custom": {
-		"cardinal-components": [
-			"${mod_id}:ring"
-		],
 		"mc-publish": {
 			"loaders": ["fabric", "quilt"]
 		}

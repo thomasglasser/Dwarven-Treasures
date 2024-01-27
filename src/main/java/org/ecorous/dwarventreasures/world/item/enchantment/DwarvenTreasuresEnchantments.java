@@ -5,10 +5,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,11 +19,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.phys.Vec3;
-import net.tslat.effectslib.api.util.EnchantmentUtil;
 import org.ecorous.dwarventreasures.DwarvenTreasures;
 import org.ecorous.dwarventreasures.server.DwarvenTreasuresServerConfig;
-import org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresEntityComponents;
-import org.ecorous.dwarventreasures.world.level.storage.RingComponent;
+import org.ecorous.dwarventreasures.world.level.storage.DwarvenTreasuresData;
+import org.ecorous.dwarventreasures.world.level.storage.RingData;
 
 import java.util.List;
 
@@ -43,10 +40,9 @@ public class DwarvenTreasuresEnchantments
 				{
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 60));
 				}
-				RingComponent ringComponent = DwarvenTreasuresEntityComponents.RING.get(livingEntity);
-				int ticks = ringComponent.getSusurrusCooldown();
-				System.out.println(ticks);
-				if (!livingEntity.level().isClientSide) ringComponent.increaseSusurrusCooldown();
+				RingData ringData = DwarvenTreasuresData.get(livingEntity, DwarvenTreasuresData.RING);
+				int ticks = ringData.getSusurrusCooldown();
+				if (!livingEntity.level().isClientSide) ringData.increaseSusurrusCooldown();
 				List<MobEffect> effects = List.of(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.BLINDNESS, MobEffects.WITHER);
 				for (int i = 1; i <= effects.size(); i++)
 				{
